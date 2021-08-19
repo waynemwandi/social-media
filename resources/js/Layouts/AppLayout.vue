@@ -1,8 +1,5 @@
 <template>
   <div>
-    <!-- <Head :title="title" />
-
-        <jet-banner /> -->
 
     <div class="flex flex-col min-h-screen">
       <nav class="bg-white border-b border-gray-100 w-full fixed z-20">
@@ -61,75 +58,78 @@
                         ease-in-out
                       "
                     >
-                      <template v-if="$page.props.user">
+                      <!-- <template v-if="$page.props.user">
                         <span class="capitalize"> Welcome, </span>
                         <span class="ml-1">
                           {{ $page.props.user.username }}
                         </span>
                       </template>
-                      <span class="capitalize" v-else> Welcome, User!</span>
-
+                      <span class="capitalize" v-else> Welcome, User!</span> -->
+                      {{ $page.props.user.username }}
                       <img
-                        class="h-8 w-8 rounded-full object-cover"
+                        class="h-8 w-8 rounded-full object-cover ml-3"
                         :src="$page.props.user.profile_photo_url"
                         :alt="$page.props.user.name"
                       />
                     </button>
 
-                    <span v-else class="inline-flex rounded-md">
-                      <button
-                        type="button"
-                        class="
-                          inline-flex
-                          items-center
-                          px-3
-                          py-2
-                          border border-transparent
-                          text-sm
-                          leading-4
-                          font-medium
-                          rounded-md
-                          text-gray-500
-                          bg-white
-                          hover:text-gray-700
-                          focus:outline-none
-                          transition
-                        "
-                      >
-                        {{ $page.props.user.name }}
+                    <button
+                      type="button"
+                      class="
+                        flex
+                        items-center
+                        text-sm
+                        font-medium
+                        text-gray-500
+                        hover:text-gray-700
+                        hover:border-gray-700
+                        focus:outline-none
+                        focus:text-gray-700
+                        focus:border-transparent
+                        transition
+                        duration-150
+                        ease-in-out
+                      "
+                      v-else
+                    >
+                      <div>
+                        {{ $page.props.user.username }}
+                      </div>
 
-                        <svg
-                          class="ml-2 -mr-0.5 h-4 w-4"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                      </button>
-                    </span>
+                      <svg
+                        class="ml-2 -mr-0.5 h-4 w-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </button>
                   </template>
 
                   <template #content>
                     <!-- Account Management -->
                     <div class="block px-4 py-2 text-xs text-gray-400">
                       Manage Account
+                      <div class="mt-1">
+                        {{ $page.props.user.email }}
+                      </div>
                     </div>
 
                     <jet-dropdown-link :href="route('profile.show')">
                       Profile
                     </jet-dropdown-link>
 
-                    <jet-dropdown-link
+                    <!-- <jet-dropdown-link
                       :href="route('api-tokens.index')"
                       v-if="$page.props.jetstream.hasApiFeatures"
                     >
                       API Tokens
-                    </jet-dropdown-link>
+                    </jet-dropdown-link> -->
 
                     <div class="border-t border-gray-100"></div>
 
@@ -244,13 +244,13 @@
                 Profile
               </jet-responsive-nav-link>
 
-              <jet-responsive-nav-link
+              <!-- <jet-responsive-nav-link
                 :href="route('api-tokens.index')"
                 :active="route().current('api-tokens.index')"
                 v-if="$page.props.jetstream.hasApiFeatures"
               >
                 API Tokens
-              </jet-responsive-nav-link>
+              </jet-responsive-nav-link> -->
 
               <!-- Authentication -->
               <form method="POST" @submit.prevent="logout">
@@ -258,76 +258,20 @@
                   Log Out
                 </jet-responsive-nav-link>
               </form>
-
-              <!-- Team Management -->
-              <template v-if="$page.props.jetstream.hasTeamFeatures">
-                <div class="border-t border-gray-200"></div>
-
-                <div class="block px-4 py-2 text-xs text-gray-400">
-                  Manage Team
-                </div>
-
-                <!-- Team Settings -->
-                <jet-responsive-nav-link
-                  :href="route('teams.show', $page.props.user.current_team)"
-                  :active="route().current('teams.show')"
-                >
-                  Team Settings
-                </jet-responsive-nav-link>
-
-                <jet-responsive-nav-link
-                  :href="route('teams.create')"
-                  :active="route().current('teams.create')"
-                  v-if="$page.props.jetstream.canCreateTeams"
-                >
-                  Create New Team
-                </jet-responsive-nav-link>
-
-                <div class="border-t border-gray-200"></div>
-
-                <!-- Team Switcher -->
-                <div class="block px-4 py-2 text-xs text-gray-400">
-                  Switch Teams
-                </div>
-
-                <template
-                  v-for="team in $page.props.user.all_teams"
-                  :key="team.id"
-                >
-                  <form @submit.prevent="switchToTeam(team)">
-                    <jet-responsive-nav-link as="button">
-                      <div class="flex items-center">
-                        <svg
-                          v-if="team.id == $page.props.user.current_team_id"
-                          class="mr-2 h-5 w-5 text-green-400"
-                          fill="none"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                          ></path>
-                        </svg>
-                        <div>{{ team.name }}</div>
-                      </div>
-                    </jet-responsive-nav-link>
-                  </form>
-                </template>
-              </template>
             </div>
           </div>
         </div>
       </nav>
 
+      <!-- Page Sidebar -->
+      <div class="flex flex-wrap pt-16 sm:flex-nowrap"></div>
+
       <!-- Page Heading -->
-      <header class="bg-white shadow" v-if="$slots.header">
+      <!-- <header class="bg-white shadow" v-if="$slots.header">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
           <slot name="header"></slot>
         </div>
-      </header>
+      </header> -->
 
       <!-- Page Content -->
       <main>
@@ -338,8 +282,6 @@
 </template>
 
 <script>
-import JetApplicationMark from "@/Jetstream/ApplicationMark.vue";
-// import JetBanner from '@/Jetstream/Banner.vue'
 import JetDropdown from "@/Jetstream/Dropdown.vue";
 import JetDropdownLink from "@/Jetstream/DropdownLink.vue";
 import JetNavLink from "@/Jetstream/NavLink.vue";
@@ -352,9 +294,6 @@ export default {
   },
 
   components: {
-    Head,
-    JetApplicationMark,
-    // JetBanner,
     JetDropdown,
     JetDropdownLink,
     JetNavLink,
@@ -369,17 +308,6 @@ export default {
   },
 
   methods: {
-    switchToTeam(team) {
-      this.$inertia.put(
-        route("current-team.update"),
-        {
-          team_id: team.id,
-        },
-        {
-          preserveState: false,
-        }
-      );
-    },
 
     logout() {
       this.$inertia.post(route("logout"));

@@ -1171,6 +1171,8 @@ video {
 	padding-bottom: 0.25rem;
 }.pt-8{
 	padding-top: 2rem;
+}.pt-16{
+	padding-top: 4rem;
 }.text-left{
 	text-align: left;
 }.text-center{
@@ -1348,6 +1350,9 @@ video {
 }.hover\:border-gray-300:hover{
 	--tw-border-opacity: 1;
 	border-color: rgba(209, 213, 219, var(--tw-border-opacity));
+}.hover\:border-gray-700:hover{
+	--tw-border-opacity: 1;
+	border-color: rgba(55, 65, 81, var(--tw-border-opacity));
 }.hover\:bg-indigo-600:hover{
 	--tw-bg-opacity: 1;
 	background-color: rgba(79, 70, 229, var(--tw-bg-opacity));
@@ -1538,6 +1543,8 @@ video {
 		--tw-scale-x: 1;
 		--tw-scale-y: 1;
 		transform: var(--tw-transform);
+	}.sm\:flex-nowrap{
+		flex-wrap: nowrap;
 	}.sm\:items-start{
 		align-items: flex-start;
 	}.sm\:items-center{
