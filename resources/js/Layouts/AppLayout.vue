@@ -1,11 +1,11 @@
 <template>
     <div>
-        <Head :title="title" />
+        <!-- <Head :title="title" />
 
-        <jet-banner />
+        <jet-banner /> -->
 
-        <div class="min-h-screen bg-gray-100">
-            <nav class="bg-white border-b border-gray-100">
+        <div class="flex flex-col min-h-screen">
+            <nav class="bg-white border-b border-gray-100 w-full fixed z-20">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
@@ -233,7 +233,7 @@
 
 <script>
     import JetApplicationMark from '@/Jetstream/ApplicationMark.vue'
-    import JetBanner from '@/Jetstream/Banner.vue'
+    // import JetBanner from '@/Jetstream/Banner.vue'
     import JetDropdown from '@/Jetstream/Dropdown.vue'
     import JetDropdownLink from '@/Jetstream/DropdownLink.vue'
     import JetNavLink from '@/Jetstream/NavLink.vue'
@@ -248,7 +248,7 @@
         components: {
             Head,
             JetApplicationMark,
-            JetBanner,
+            // JetBanner,
             JetDropdown,
             JetDropdownLink,
             JetNavLink,
