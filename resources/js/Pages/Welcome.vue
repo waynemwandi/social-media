@@ -16,7 +16,7 @@
                         Social Media Feed
                     </inertia-link>
                     <template v-else>
-                        <inertia-link :href="route('login')" class="btn text-white bg-gray-800 rounded px-3 py-1 hover:primaryColour" >
+                        <inertia-link href="resources/js/Pages/Auth/Login.vue" class="btn text-white bg-gray-800 rounded px-3 py-1 hover:primaryColour" style="cursor: pointer;">
                             Login
                         </inertia-link>
                         <inertia-link :href="route('register')" v-if="canRegister" class="text-white bg-gray-800 rounded px-3 py-1 hover:primaryColour" style="cursor: pointer;">

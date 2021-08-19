@@ -28,7 +28,6 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
-        'slug'
     ];
 
     /**
@@ -61,7 +60,11 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    protected $with = [
+        'profile',
+    ];
+
     public function profile() {
-        $this->hasOne(Profile::class);
+        return $this->hasOne(Profile::class);
     }
 }
