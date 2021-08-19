@@ -264,7 +264,9 @@
       </nav>
 
       <!-- Page Sidebar -->
-      <div class="flex flex-wrap pt-16 sm:flex-nowrap"></div>
+      <div class="flex flex-wrap pt-16 sm:flex-nowrap">
+          <side-bar></side-bar>
+      </div>
 
       <!-- Page Heading -->
       <!-- <header class="bg-white shadow" v-if="$slots.header">
@@ -287,6 +289,7 @@ import JetDropdownLink from "@/Jetstream/DropdownLink.vue";
 import JetNavLink from "@/Jetstream/NavLink.vue";
 import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
+import SideBar from '@/Components/SideBar'
 
 export default {
   props: {
@@ -299,6 +302,7 @@ export default {
     JetNavLink,
     JetResponsiveNavLink,
     Link,
+    SideBar,
   },
 
   data() {
