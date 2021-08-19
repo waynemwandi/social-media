@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div class="flex flex-col min-h-screen">
       <nav class="bg-white border-b border-gray-100 w-full fixed z-20">
         <!-- Primary Navigation Menu -->
@@ -9,7 +8,7 @@
             <div class="flex">
               <!-- Logo -->
               <div class="flex-shrink-0 flex items-center">
-                <Link :href="route('dashboard')" class="h-3/4 w-16">
+                <Link :href="route('dashboard.index')" class="h-3/4 w-16">
                   <!-- <jet-application-mark class="block h-9 w-auto" /> -->
                   <img
                     :src="'/storage/images/logo.png'"
@@ -21,8 +20,8 @@
               <!-- Navigation Links -->
               <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                 <jet-nav-link
-                  :href="route('dashboard')"
-                  :active="route().current('dashboard')"
+                  :href="route('dashboard.index')"
+                  :active="route().current('dashboard.index')"
                 >
                   Dashboard
                 </jet-nav-link>
@@ -205,8 +204,8 @@
         >
           <div class="pt-2 pb-3 space-y-1">
             <jet-responsive-nav-link
-              :href="route('dashboard')"
-              :active="route().current('dashboard')"
+              :href="route('dashboard.index')"
+              :active="route().current('dashboard.index')"
             >
               Dashboard
             </jet-responsive-nav-link>
@@ -263,22 +262,17 @@
         </div>
       </nav>
 
-      <!-- Page Sidebar -->
       <div class="flex flex-wrap pt-16 sm:flex-nowrap">
-          <side-bar></side-bar>
+        <!-- Page Sidebar -->
+        <side-bar></side-bar>
+
+        <!-- Page Content -->
+        <main class="bg-gray-200 shadow rounded my-5 py-6 px-4 w-50 sm:w-2/3 sm:mx-2
+        sm:my-3 md:mx-4 md:px-10 lg:mx-auto">
+          <slot></slot>
+        </main>
       </div>
 
-      <!-- Page Heading -->
-      <!-- <header class="bg-white shadow" v-if="$slots.header">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <slot name="header"></slot>
-        </div>
-      </header> -->
-
-      <!-- Page Content -->
-      <main>
-        <slot></slot>
-      </main>
     </div>
   </div>
 </template>
@@ -289,7 +283,7 @@ import JetDropdownLink from "@/Jetstream/DropdownLink.vue";
 import JetNavLink from "@/Jetstream/NavLink.vue";
 import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
-import SideBar from '@/Components/SideBar'
+import SideBar from "@/Components/SideBar";
 
 export default {
   props: {
@@ -312,7 +306,6 @@ export default {
   },
 
   methods: {
-
     logout() {
       this.$inertia.post(route("logout"));
     },
