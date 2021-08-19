@@ -6,7 +6,7 @@
             <div>
                 <img :src="'/storage/images/logo.png'" alt="Social Media" />
             </div>
-            <div class="">
+            <div class="text-center">
                 <h1 class="text-4xl font-semibold">
                     Social Media Feed
                 </h1>
@@ -16,18 +16,16 @@
                         Social Media Feed
                     </inertia-link>
                     <template v-else>
-                        <inertia-link :href="route('login')" class="btn text-white bg-gray-800 rounded
-                        px-3 py-1 hover:bg-gray-800" style="cursor: pointer;">
+                        <inertia-link :href="route('login')" class="btn text-white bg-gray-800 rounded px-3 py-1 hover:primaryColour" >
                             Login
                         </inertia-link>
-                        <inertia-link :href="route('register')" v-if="canRegister" class="text-white 
-                        bg-gray-800 rounded px-3 py-1 hover:primaryColour" style="cursor: pointer;">
+                        <inertia-link :href="route('register')" v-if="canRegister" class="text-white bg-gray-800 rounded px-3 py-1 hover:primaryColour" style="cursor: pointer;">
                             Register
                         </inertia-link>
                     </template>
                 </div>
 
-                <p class="mt-10">200 active members</p>
+                <p class="mt-10">{{ users }} active members</p>
             </div>
         </div>
         <!-- <div
@@ -75,6 +73,13 @@
     </div>
 </template>
 
+<style css>
+.hover\:primaryColour:hover {
+	opacity: 1;
+	background-color: #0400D2;
+}
+</style>
+
 <script>
 import { Head, Link } from "@inertiajs/inertia-vue3";
 
@@ -85,6 +90,7 @@ export default {
     },
 
     props: {
+        users: Number,
         canLogin: Boolean,
         canRegister: Boolean,
         laravelVersion: String,
@@ -92,3 +98,4 @@ export default {
     },
 };
 </script>
+

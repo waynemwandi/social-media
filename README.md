@@ -11,7 +11,7 @@
 * [Twitter](https://twitter.com/mwandi_wayne/) <br> 
 * [Facebook](https://www.facebook.com/wayne.mwandi/) <br>
 
-### This is a Social Media App built in *[Laravel PHP](https://laravel.com/docs/8.x/readme) and *[VueJS](https://vuejs.org/v2/guide/) <br>
+### This is a Social Media App built in [Laravel PHP](https://laravel.com/docs/8.x/readme) and [VueJS](https://vuejs.org/v2/guide/) <br>
 
 * Click on this ***[link](https://waynemwandi.github.io/social-media)** to access the website.
 
