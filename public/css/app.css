@@ -1151,9 +1151,6 @@ video {
 }.py-10{
 	padding-top: 2.5rem;
 	padding-bottom: 2.5rem;
-}.px-0{
-	padding-left: 0px;
-	padding-right: 0px;
 }.pt-6{
 	padding-top: 1.5rem;
 }.pt-5{
@@ -1176,10 +1173,10 @@ video {
 	padding-bottom: 0.25rem;
 }.pt-8{
 	padding-top: 2rem;
-}.pt-16{
-	padding-top: 4rem;
 }.pl-6{
 	padding-left: 1.5rem;
+}.pt-16{
+	padding-top: 4rem;
 }.text-left{
 	text-align: left;
 }.text-center{
@@ -1509,9 +1506,6 @@ video {
 	}.sm\:mx-2{
 		margin-left: 0.5rem;
 		margin-right: 0.5rem;
-	}.sm\:my-2{
-		margin-top: 0.5rem;
-		margin-bottom: 0.5rem;
 	}.sm\:my-3{
 		margin-top: 0.75rem;
 		margin-bottom: 0.75rem;
