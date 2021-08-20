@@ -8,7 +8,7 @@
         pl-6
         py-2
         text-gray-800
-        hover:bg-gray-500
+        hover:bg-blue-600
         hover:text-white
       "
     >

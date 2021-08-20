@@ -267,7 +267,7 @@
         <side-bar></side-bar>
 
         <!-- Page Content -->
-        <main class="bg-gray-200 shadow rounded my-5 py-6 px-4 w-50 sm:w-2/3 sm:mx-2
+        <main class="bg-gray-200 shadow rounded my-5 ml-5 py-6 px-4 w-50 sm:w-2/3 sm:mx-2
         sm:my-3 md:mx-4 md:px-10 lg:mx-auto">
           <slot></slot>
         </main>
