@@ -13,7 +13,7 @@
 
 ### This is a Social Media App built in [Laravel PHP](https://laravel.com/docs/8.x/readme) and [VueJS](https://vuejs.org/v2/guide/) <br>
 
-* Click on this ***[link](https://waynemwandi.github.io/social-media)** to access the website.
+* Click on this **[link](https://waynemwandi.github.io/social-media)** to access the website.
 
 ## Legal | Licencing
 ### **Copyright © 2021  Wayne Mwandi. All rights reserved.**
