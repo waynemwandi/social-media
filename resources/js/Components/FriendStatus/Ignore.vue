@@ -41,6 +41,11 @@ export default {
       this.loading = true;
       this.$inertia.get(this.route("friends.deny", this.profile.id), {
         onSuccess: () => {
+            Toast.fire({
+            icon: "success",
+            title: "Friend request ignored!",
+          });
+
           this.loading = false;
         },
       });

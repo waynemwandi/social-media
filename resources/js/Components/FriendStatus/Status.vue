@@ -90,6 +90,11 @@ export default {
       this.addFriendForm.post(this.route("friends.store", this.profile.id), {
         preserveScroll: true,
         onSuccess: () => {
+          Toast.fire({
+            icon: "success",
+            title: "Friend request rent!",
+          });
+
           this.loading = false;
         },
       });
@@ -102,6 +107,11 @@ export default {
         {
           preserveScroll: true,
           onSuccess: () => {
+              Toast.fire({
+            icon: "success",
+            title: "Friend has been removed!",
+          });
+
             this.loading = false;
           },
         }
