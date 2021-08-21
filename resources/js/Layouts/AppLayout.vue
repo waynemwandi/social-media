@@ -23,7 +23,7 @@
                   :href="route('dashboard.index')"
                   :active="route().current('dashboard.index')"
                 >
-                  Dashboard
+                  Feed
                 </jet-nav-link>
               </div>
             </div>

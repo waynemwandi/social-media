@@ -22933,7 +22933,7 @@ var _hoisted_8 = {
   "class": "hidden space-x-8 sm:-my-px sm:ml-10 sm:flex"
 };
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Dashboard ");
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Feed ");
 
 var _hoisted_10 = {
   "class": "\n                hidden\n                sm:flex\n                sm:items-center\n                sm:justify-end\n                sm:ml-6\n                w-1/2\n              "
