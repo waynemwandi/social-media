@@ -12,9 +12,9 @@
                 </h1>
 
                 <div v-if="canLogin" class="flex justify-center space-x-6 mt-5">
-                    <inertia-link href="#" v-if="$page.props.user" class="text-lg text-gray-700 underline">
+                    <Link href="#" v-if="$page.props.user" class="text-lg text-gray-700 underline">
                         Social Media Feed
-                    </inertia-link>
+                    </Link>
                     <template v-else>
                         <Link :href="route('login')" class="btn text-white bg-gray-800 rounded px-3 py-1 hover:primaryColour" style="cursor: pointer;">
                             Login

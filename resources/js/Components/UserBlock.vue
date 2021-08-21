@@ -1,6 +1,6 @@
-    <template>
+<template>
   <div class="sm:flex sm:flex-wrap">
-    <inertia-link
+    <Link
       :href="route('profiles.show', item.username)"
       class="sm:w-1/2"
       v-for="(item, index) in items"
@@ -33,12 +33,18 @@
           </span>
         </div>
       </div>
-    </inertia-link>
+    </Link>
   </div>
 </template>
 
 <script>
+import { Head, Link } from "@inertiajs/inertia-vue3";
+
 export default {
-    props: ['items']
-}
+  props: ["items"],
+
+  components: {
+    Link,
+  },
+};
 </script>

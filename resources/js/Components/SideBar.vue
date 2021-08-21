@@ -31,8 +31,16 @@
   </aside>
 </template>
 
+
 <script>
+import { Head, Link } from "@inertiajs/inertia-vue3";
+
+
 export default {
+  components: {
+      Link,
+
+  },
 
   computed: {
     sideBarLinks() {
@@ -57,7 +65,6 @@ export default {
         //   route: route("friends.index"),
         //   icon: "user-friends",
         // },
-
 
         // {
         //   name: "Chat Rooms",

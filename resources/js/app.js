@@ -15,7 +15,6 @@ createInertiaApp({
             .use(plugin)
             .mixin({ methods: { route } })
             .component('icon', Icon)
-
             .mount(el);
 
     },
