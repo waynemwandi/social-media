@@ -1,6 +1,12 @@
 <template>
   <div class="flex mt-5 sm:mt-0">
-    <template v-if="$page.props.user.id != profile.id">
+      <!-- Buttons -->
+    <template v-if="friendRequestRecievedFrom">
+        <accept :profile="profile"></accept>
+        <ignore :profile="profile" class="ml-3"></ignore>
+    </template>
+
+    <template v-else-if="$page.props.user.id != profile.id">
       <form @submit.prevent="addFriend">
         <blue-button type="submit" class="text-xs">
           Add Friend
@@ -12,30 +18,39 @@
 </template>
 
 <script>
-import BlueButton from '@/Components/Buttons/BlueButton'
+import Accept from './Accept'
+import BlueButton from "@/Components/Buttons/BlueButton";
+import Ignore from './Ignore'
 
 export default {
-  props: ["profile"],
+  props: [
+    "profile",
+    "isFriendsWith",
+    "friendRequestSentTo",
+    "friendRequestRecievedFrom",
+  ],
 
-  components : {
-      BlueButton,
+  components: {
+    Accept,
+    BlueButton,
+    Ignore,
   },
 
   data() {
-      return {
-          addFriendForm: this.$inertia.form({
-              user: this.profile
-          })
-      }
+    return {
+      addFriendForm: this.$inertia.form({
+        user: this.profile,
+      }),
+    };
   },
 
   methods: {
-      addFriend() {
-          this.addFriendForm.post(this.route('friends.store', this.profile.id), {
-              preserveScroll: true,
-              onSuccess: () => {}
-          })
-      },
-  }
+    addFriend() {
+      this.addFriendForm.post(this.route("friends.store", this.profile.id), {
+        preserveScroll: true,
+        onSuccess: () => {},
+      });
+    },
+  },
 };
 </script>
