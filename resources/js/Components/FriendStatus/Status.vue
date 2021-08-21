@@ -1,9 +1,24 @@
 <template>
   <div class="flex mt-5 sm:mt-0">
-      <!-- Buttons -->
+    <!-- Buttons -->
     <template v-if="friendRequestRecievedFrom">
-        <accept :profile="profile"></accept>
-        <ignore :profile="profile" class="ml-3"></ignore>
+      <accept :profile="profile"></accept>
+      <ignore :profile="profile" class="ml-3"></ignore>
+    </template>
+
+    <template v-else-if="friendRequestSentTo">
+      <h3 class="font-semi-bold text-md text-gray-800 leading-tight">
+        Pending
+      </h3>
+    </template>
+
+    <template v-else-if="isFriendsWith">
+        <form @submit.prevent="deleteFriend">
+            <jet-danger-button type="submit">
+                Unfriend
+          <icon name="user-minus" class="w-4 h-4 fill-current ml-1"></icon>
+            </jet-danger-button>
+        </form>
     </template>
 
     <template v-else-if="$page.props.user.id != profile.id">
@@ -18,9 +33,11 @@
 </template>
 
 <script>
-import Accept from './Accept'
+import Accept from "./Accept";
 import BlueButton from "@/Components/Buttons/BlueButton";
-import Ignore from './Ignore'
+import Ignore from "./Ignore";
+import JetDangerButton from '@/Jetstream/DangerButton'
+import Icon from '../Icon.vue';
 
 export default {
   props: [
@@ -34,7 +51,8 @@ export default {
     Accept,
     BlueButton,
     Ignore,
-
+    JetDangerButton,
+    Icon,
   },
 
   data() {
@@ -43,12 +61,22 @@ export default {
         user: this.profile,
       }),
 
-    }
+      deleteFriendForm: this.$inertia.form({
+        user: this.profile,
+      }),
+    };
   },
 
   methods: {
     addFriend() {
-      this.addFriendForm.post(this.route('friends.store', this.profile.id), {
+      this.addFriendForm.post(this.route("friends.store", this.profile.id), {
+        preserveScroll: true,
+        onSuccess: () => {},
+      });
+    },
+
+    deleteFriend() {
+      this.deleteFriendForm.delete(this.route("friends.destroy", this.profile.id), {
         preserveScroll: true,
         onSuccess: () => {},
       });

@@ -34,6 +34,8 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('user')->group(function 
         Route::patch('/{user}', [FriendController::class, 'update'])->name('update');
 
         Route::get('/{user}', [FriendController::class, 'deny'])->name('deny');
+
+        Route::delete('/{user}', [FriendController::class, 'destroy'])->name('destroy');
     });
 
 

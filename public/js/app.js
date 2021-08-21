@@ -19143,6 +19143,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Accept__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Accept */ "./resources/js/Components/FriendStatus/Accept.vue");
 /* harmony import */ var _Components_Buttons_BlueButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/Buttons/BlueButton */ "./resources/js/Components/Buttons/BlueButton.vue");
 /* harmony import */ var _Ignore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Ignore */ "./resources/js/Components/FriendStatus/Ignore.vue");
+/* harmony import */ var _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/DangerButton */ "./resources/js/Jetstream/DangerButton.vue");
+/* harmony import */ var _Icon_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Icon.vue */ "./resources/js/Components/Icon.vue");
+
+
 
 
 
@@ -19151,18 +19155,29 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     Accept: _Accept__WEBPACK_IMPORTED_MODULE_0__.default,
     BlueButton: _Components_Buttons_BlueButton__WEBPACK_IMPORTED_MODULE_1__.default,
-    Ignore: _Ignore__WEBPACK_IMPORTED_MODULE_2__.default
+    Ignore: _Ignore__WEBPACK_IMPORTED_MODULE_2__.default,
+    JetDangerButton: _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_3__.default,
+    Icon: _Icon_vue__WEBPACK_IMPORTED_MODULE_4__.default
   },
   data: function data() {
     return {
       addFriendForm: this.$inertia.form({
+        user: this.profile
+      }),
+      deleteFriendForm: this.$inertia.form({
         user: this.profile
       })
     };
   },
   methods: {
     addFriend: function addFriend() {
-      this.addFriendForm.post(this.route('friends.store', this.profile.id), {
+      this.addFriendForm.post(this.route("friends.store", this.profile.id), {
+        preserveScroll: true,
+        onSuccess: function onSuccess() {}
+      });
+    },
+    deleteFriend: function deleteFriend() {
+      this.deleteFriendForm["delete"](this.route("friends.destroy", this.profile.id), {
         preserveScroll: true,
         onSuccess: function onSuccess() {}
       });
@@ -21338,8 +21353,14 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "flex mt-5 sm:mt-0"
 };
+var _hoisted_2 = {
+  key: 1,
+  "class": "font-semi-bold text-md text-gray-800 leading-tight"
+};
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Add Friend ");
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Unfriend ");
+
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Add Friend ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_accept = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("accept");
@@ -21347,6 +21368,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_ignore = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ignore");
 
   var _component_icon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("icon");
+
+  var _component_jet_danger_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-danger-button");
 
   var _component_blue_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("blue-button");
 
@@ -21363,9 +21386,28 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["profile"])], 64
   /* STABLE_FRAGMENT */
-  )) : _ctx.$page.props.user.id != $props.profile.id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
-    key: 1,
+  )) : $props.friendRequestSentTo ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h3", _hoisted_2, " Pending ")) : $props.isFriendsWith ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
+    key: 2,
     onSubmit: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $options.deleteFriend && $options.deleteFriend.apply($options, arguments);
+    }, ["prevent"]))
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_danger_button, {
+    type: "submit"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_icon, {
+        name: "user-minus",
+        "class": "w-4 h-4 fill-current ml-1"
+      })];
+    }),
+    _: 1
+    /* STABLE */
+
+  })], 32
+  /* HYDRATE_EVENTS */
+  )) : _ctx.$page.props.user.id != $props.profile.id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
+    key: 3,
+    onSubmit: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.addFriend && $options.addFriend.apply($options, arguments);
     }, ["prevent"]))
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_blue_button, {
@@ -21373,7 +21415,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "text-xs"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_icon, {
+      return [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_icon, {
         name: "user-plus",
         "class": "w-4 h-4 fill-current ml-1"
       })];
