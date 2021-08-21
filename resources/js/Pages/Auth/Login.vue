@@ -19,6 +19,7 @@
     </div>
 
     <form @submit.prevent="submit">
+        @csrf
       <div>
         <jet-label for="email" value="Email" />
         <jet-input
