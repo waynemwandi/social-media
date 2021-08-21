@@ -13,6 +13,7 @@
         <jet-validation-errors class="mb-4" />
 
         <form @submit.prevent="submit">
+            @csrf
             <div>
                 <jet-label for="password" value="Password" />
                 <jet-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" autofocus />

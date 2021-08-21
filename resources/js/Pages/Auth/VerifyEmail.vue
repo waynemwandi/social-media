@@ -15,6 +15,7 @@
         </div>
 
         <form @submit.prevent="submit">
+            @csrf
             <div class="mt-4 flex items-center justify-between">
                 <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Resend Verification Email

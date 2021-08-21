@@ -9,6 +9,7 @@
         <jet-validation-errors class="mb-4" />
 
         <form @submit.prevent="submit">
+            @csrf
             <div>
                 <jet-label for="email" value="Email" />
                 <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus />

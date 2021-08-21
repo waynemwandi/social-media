@@ -19,6 +19,7 @@
         <jet-validation-errors class="mb-4" />
 
         <form @submit.prevent="submit">
+            @csrf
             <div v-if="! recovery">
                 <jet-label for="code" value="Code" />
                 <jet-input ref="code" id="code" type="text" inputmode="numeric" class="mt-1 block w-full" v-model="form.code" autofocus autocomplete="one-time-code" />
