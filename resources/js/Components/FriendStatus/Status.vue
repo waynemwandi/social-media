@@ -13,19 +13,35 @@
     </template>
 
     <template v-else-if="isFriendsWith">
-        <form @submit.prevent="deleteFriend">
-            <jet-danger-button type="submit">
-                Unfriend
-          <icon name="user-minus" class="w-4 h-4 fill-current ml-1"></icon>
-            </jet-danger-button>
-        </form>
+      <form @submit.prevent="deleteFriend">
+        <jet-danger-button type="submit">
+          <looping-rhombuses-spinner
+            :animation-duration="2500"
+            :rhombus-size="10"
+            class="text-white"
+            v-if="loading"
+          />
+          <template v-else>
+            Unfriend
+            <icon name="user-minus" class="w-4 h-4 fill-current ml-1"></icon>
+          </template>
+        </jet-danger-button>
+      </form>
     </template>
 
     <template v-else-if="$page.props.user.id != profile.id">
       <form @submit.prevent="addFriend">
         <blue-button type="submit" class="text-xs">
-          Add Friend
-          <icon name="user-plus" class="w-4 h-4 fill-current ml-1"></icon>
+          <looping-rhombuses-spinner
+            :animation-duration="2500"
+            :rhombus-size="10"
+            class="text-white"
+            v-if="loading"
+          />
+          <template v-else>
+            Add Friend
+            <icon name="user-plus" class="w-4 h-4 fill-current ml-1"></icon>
+          </template>
         </blue-button>
       </form>
     </template>
@@ -33,11 +49,11 @@
 </template>
 
 <script>
+import { LoopingRhombusesSpinner } from "epic-spinners";
 import Accept from "./Accept";
 import BlueButton from "@/Components/Buttons/BlueButton";
 import Ignore from "./Ignore";
-import JetDangerButton from '@/Jetstream/DangerButton'
-import Icon from '../Icon.vue';
+import JetDangerButton from "@/Jetstream/DangerButton";
 
 export default {
   props: [
@@ -52,7 +68,7 @@ export default {
     BlueButton,
     Ignore,
     JetDangerButton,
-    Icon,
+    LoopingRhombusesSpinner,
   },
 
   data() {
@@ -64,22 +80,32 @@ export default {
       deleteFriendForm: this.$inertia.form({
         user: this.profile,
       }),
+      loading: false,
     };
   },
 
   methods: {
     addFriend() {
+      this.loading = true;
       this.addFriendForm.post(this.route("friends.store", this.profile.id), {
         preserveScroll: true,
-        onSuccess: () => {},
+        onSuccess: () => {
+          this.loading = false;
+        },
       });
     },
 
     deleteFriend() {
-      this.deleteFriendForm.delete(this.route("friends.destroy", this.profile.id), {
-        preserveScroll: true,
-        onSuccess: () => {},
-      });
+      this.loading = true;
+      this.deleteFriendForm.delete(
+        this.route("friends.destroy", this.profile.id),
+        {
+          preserveScroll: true,
+          onSuccess: () => {
+            this.loading = false;
+          },
+        }
+      );
     },
   },
 };
