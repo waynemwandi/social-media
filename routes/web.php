@@ -5,6 +5,7 @@ use App\Http\Controllers\User\FriendController;
 use App\Http\Controllers\User\MemberController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\WelcomeController;
+use App\Models\Friend;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,11 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('user')->group(function 
 
     Route::prefix('friends')->name('friends.')->group(function() {
         Route::post('/{user}', [FriendController::class, 'store'])->name('store');
+
+        Route::patch('/{user}', [FriendController::class, 'update'])->name('update');
+
+        Route::get('/{user}', [FriendController::class, 'deny'])->name('deny');
     });
+
 
 });

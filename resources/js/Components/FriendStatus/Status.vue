@@ -34,6 +34,7 @@ export default {
     Accept,
     BlueButton,
     Ignore,
+
   },
 
   data() {
@@ -41,12 +42,13 @@ export default {
       addFriendForm: this.$inertia.form({
         user: this.profile,
       }),
-    };
+
+    }
   },
 
   methods: {
     addFriend() {
-      this.addFriendForm.post(this.route("friends.store", this.profile.id), {
+      this.addFriendForm.post(this.route('friends.store', this.profile.id), {
         preserveScroll: true,
         onSuccess: () => {},
       });

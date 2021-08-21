@@ -19080,6 +19080,21 @@ __webpack_require__.r(__webpack_exports__);
   props: ["profile"],
   components: {
     GreenButton: _Components_Buttons_GreenButton__WEBPACK_IMPORTED_MODULE_0__.default
+  },
+  data: function data() {
+    return {
+      acceptFriendForm: this.$inertia.form({
+        user: this.profile
+      })
+    };
+  },
+  methods: {
+    acceptFriend: function acceptFriend() {
+      this.acceptFriendForm.patch(this.route('friends.update', this.profile.id), {
+        preserveScroll: true,
+        onSuccess: function onSuccess() {}
+      });
+    }
   }
 });
 
@@ -19099,8 +19114,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Jetstream/DangerButton */ "./resources/js/Jetstream/DangerButton.vue");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['profile'],
   components: {
     JetDangerButton: _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_0__.default
+  },
+  methods: {
+    ignoreRequest: function ignoreRequest() {
+      this.$inertia.get(this.route('friends.deny', this.profile.id), {
+        onSuccess: function onSuccess() {}
+      });
+    }
   }
 });
 
@@ -19139,7 +19162,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addFriend: function addFriend() {
-      this.addFriendForm.post(this.route("friends.store", this.profile.id), {
+      this.addFriendForm.post(this.route('friends.store', this.profile.id), {
         preserveScroll: true,
         onSuccess: function onSuccess() {}
       });
@@ -21230,7 +21253,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_green_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("green-button");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Holds accept form "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_green_button, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Holds accept form "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+    onSubmit: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $options.acceptFriend && $options.acceptFriend.apply($options, arguments);
+    }, ["prevent"]))
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_green_button, {
     type: "submit",
     "class": "text-xs"
   }, {
@@ -21243,7 +21270,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })])]);
+  })], 32
+  /* HYDRATE_EVENTS */
+  )]);
 }
 
 /***/ }),
@@ -21269,7 +21298,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_jet_danger_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-danger-button");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_danger_button, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+    onSubmit: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $options.ignoreRequest && $options.ignoreRequest.apply($options, arguments);
+    }, ["prevent"]))
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_danger_button, {
     type: "submit",
     "class": "text-xs"
   }, {
@@ -21282,7 +21315,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })])]);
+  })], 32
+  /* HYDRATE_EVENTS */
+  )]);
 }
 
 /***/ }),

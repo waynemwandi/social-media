@@ -73,12 +73,17 @@ class FriendController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        if (!$user) {
+            return back()->withErrors(['message' => 'This user could not be found']);
+        }
+
+        auth()->user()->accept_friend($user->id);
+        return back();
     }
 
     /**
@@ -91,4 +96,23 @@ class FriendController extends Controller
     {
         //
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function deny(User $user)
+    {
+        if (!$user) {
+            return back()->withErrors(['message' => 'This user could not be found']);
+        }
+
+        auth()->user()->deny_friend($user->id);
+        return back();
+    }
+
+
 }
