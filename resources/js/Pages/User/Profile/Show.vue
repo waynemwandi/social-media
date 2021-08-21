@@ -9,6 +9,8 @@
             <span class="capitalize ml-3">{{ `${profile.name}'s Profile` }}</span>
 
         </h2>
+
+        <status :profile="profile"></status>
       </div>
     </template>
   </pages-layout>
@@ -16,12 +18,14 @@
 
 <script>
 import PagesLayout from '@/Layouts/PagesLayout'
+import Status from '@/Components/FriendStatus/Status'
 
 export default {
     props: ['profile'],
 
     components: {
         PagesLayout,
+        Status,
     }
 
 }

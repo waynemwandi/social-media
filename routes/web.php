@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\User\FriendController;
 use App\Http\Controllers\User\MemberController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\WelcomeController;
@@ -26,6 +27,8 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('user')->group(function 
 
     Route::get('members', [MemberController::class, 'index'])->name('members.index');
 
-
+    Route::prefix('friends')->name('friends.')->group(function() {
+        Route::post('/{user}', [FriendController::class, 'store'])->name('store');
+    });
 
 });
