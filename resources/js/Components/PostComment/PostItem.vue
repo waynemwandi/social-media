@@ -1,22 +1,22 @@
 <template>
   <div class="flex border-t border-gray-400 mt-5 py-5 space-x-5">
     <div class="flex-shrink-0">
-      <inertia-link :href="route('profiles.show', post.user.username)">
+      <Link :href="route('profiles.show', post.user.username)">
         <img
           class="h-8 w-8 rounded-full object-cover"
           :src="post.user.profile_photo_url"
           :alt="post.user.username"
         />
-      </inertia-link>
+      </Link>
     </div>
 
     <div class="flex-1">
       <div>
         <div class="flex justify-between">
           <h2 class="text-lg font-semibold underline">
-            <inertia-link :href="route('profiles.show', post.user.username)">{{
-              post.user.username
-            }}</inertia-link>
+            <Link :href="route('profiles.show', post.user.username)">
+              {{ post.user.username }}
+            </Link>
           </h2>
 
           <div class="relative">
@@ -61,28 +61,7 @@
                   Delete Post
                   <icon name="trash" class="w-3 h-3 fill-current"></icon>
                 </button>
-
-
               </form>
-
-              <!-- <form @submit.prevent="sharePost">
-                  <button
-                  type="submit"
-                  class="
-                    flex
-                    justify-between
-                    items-center
-                    w-full
-                    focus:outline-none
-                  "
-                >
-                  Share
-                  <icon name="share" class="w-3 h-3 fill-current"></icon>
-                </button>
-              </form> -->
-
-
-
             </div>
           </div>
         </div>
@@ -93,8 +72,8 @@
 
       <div class="flex items-end my-3">
         <div>
-          <!-- <span class="text-sm italic">{{ post.timeAgo }}</span> -->
-          <span class="text-sm italic">3 days ago</span>
+          <span class="text-sm italic">{{ dateTime(post.created_at) }}</span>
+          <!-- <span class="text-sm italic">{{ post.created_at | timeAgo }}</span> -->
         </div>
 
         <div class="flex ml-3">
@@ -125,30 +104,36 @@ export default {
     return {
       openMenu: false,
       deleteForm: this.$inertia.form({
-          userPost: this.post
-      })
+        userPost: this.post,
+      }),
+
     };
   },
 
+
   methods: {
-      deletePost() {
-          this.openMenu = false
-          this.deleteForm.delete(this.route('posts.destroy', this.post), {
-              preserveScroll: true,
-              onError: () => {
-                  Toast.fire({
-                      icon: 'error',
-                      title: 'You cannot delete this post!'
-                  })
-              },
-              onSuccess: () => {
-                  Toast.fire({
-                      icon: 'success',
-                      title: 'Post has successfully been deleted!'
-                  })
-              }
-          })
-      }
-  }
+    deletePost() {
+      this.openMenu = false;
+      this.deleteForm.delete(this.route("posts.destroy", this.post), {
+        preserveScroll: true,
+        onError: () => {
+          Toast.fire({
+            icon: "error",
+            title: "You cannot delete this post!",
+          });
+        },
+        onSuccess: () => {
+          Toast.fire({
+            icon: "success",
+            title: "Post has successfully been deleted!",
+          });
+        },
+      });
+    },
+
+    dateTime(value) {
+      return moment(value).format("DD-MM-YYYY");
+    }
+  },
 };
 </script>

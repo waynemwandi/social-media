@@ -26,6 +26,7 @@
         "vue-loader": "^16.1.2"
     },
     "dependencies": {
+        "date-fns": "^2.23.0",
         "epic-spinners": "^1.1.0",
         "eslint": "^7.32.0"
     }
