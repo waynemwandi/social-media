@@ -92,6 +92,24 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        // checks the post belongs to you before deleting (checks by id)
+        if ((auth()->user()->id != $post->user_id) && (!auth()->user()->is_friends_with($post->user_id))) {
+            return back()->withErrors(['message' => 'You cannot delete this post!']);
+        }
+
+        if ((auth()->user()->id != $post->user_id) && (auth()->user()->id != $post->parent_id)) {
+            return back()->withErrors(['message' => 'You cannot delete this post!']);
+        }
+
+        // Allows you to delete a post that was writen by other user for the main user
+        if ((auth()->user()->id != $post->user_id) && (auth()->user()->id = $post->parent_id)) {
+            $post->delete();
+            return back();
+        }
+
+        if ((auth()->user()->id = $post->user_id)) {
+            $post->delete();
+            return back();
+        }
     }
 }

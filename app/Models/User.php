@@ -66,6 +66,20 @@ class User extends Authenticatable
         'profile',
     ];
 
+
+    public function scopeSuggestions($query)
+    {
+        return $query->notAuth()->orWhereIn('id', auth()->user()->friends_ids());
+    }
+
+    public function scopeNotAuth()
+    {
+        return $this->where('id', '!=', auth()->id());
+    }
+    // $suggestions = User::where('id', '!=', auth()->id())
+    //         ->orWhereIn('id', auth()->user()->friends_ids())->take(5)->inRandomOrder()
+    //         ->get();
+
     public function profile() {
         return $this->hasOne(Profile::class);
     }

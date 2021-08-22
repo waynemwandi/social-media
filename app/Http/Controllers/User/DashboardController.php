@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -20,6 +21,7 @@ class DashboardController extends Controller
 
         return Inertia::render('Dashboard', [
             'combinedPosts' => $combinedPosts,
+            'suggestions' => User::suggestions()->take(5)->inRandomOrder()->get(),
         ]);
     }
 
