@@ -18,8 +18,8 @@
       {{ status }}
     </div>
 
-    <form @submit.prevent="submit">
-        @csrf
+    <form @submit.prevent="submit" @csrf.prevent>
+
       <div>
         <jet-label for="email" value="Email" />
         <jet-input

@@ -15,8 +15,8 @@
 
     <jet-validation-errors class="mb-4" />
 
-    <form @submit.prevent="submit">
-        @csrf
+    <form @submit.prevent="submit" @csrf.prevent>
+
       <div>
         <jet-label for="name" value="Name" />
         <jet-input

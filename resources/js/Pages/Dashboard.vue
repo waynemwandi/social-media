@@ -21,7 +21,7 @@
       </div>
     </template>
 
-    <combined-posts :posts="posts"> </combined-posts>
+    <combined-posts :posts="combinedPosts.data"> </combined-posts>
   </pages-layout>
 </template>
 
@@ -30,7 +30,7 @@ import CombinedPosts from "@/Components/PostComment/CombinedPosts";
 import PagesLayout from "@/Layouts/PagesLayout.vue";
 
 export default {
-  props: ["posts"],
+  props: ['combinedPosts'],
 
   components: {
     CombinedPosts,
