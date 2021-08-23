@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\User\FriendController;
 use App\Http\Controllers\User\MemberController;
 use App\Http\Controllers\User\ProfileController;
@@ -30,13 +31,20 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('user')->group(function 
 
     Route::get('members', [MemberController::class, 'index'])->name('members.index');
 
+
+    Route::prefix('comments')->name('comments.')->group(function () {
+        Route::post('/{post}/comments', [CommentController::class, 'store'])->name('store');
+
+        // Route::delete('/{post}', [PostController::class, 'destroy'])->name('destroy');
+
+
+
+    });
+
     Route::prefix('posts')->name('posts.')->group(function () {
         Route::post('', [PostController::class, 'store'])->name('store');
 
         Route::delete('/{post}', [PostController::class, 'destroy'])->name('destroy');
-
-
-
     });
 
     Route::prefix('friends')->name('friends.')->group(function() {

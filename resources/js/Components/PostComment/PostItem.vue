@@ -84,7 +84,7 @@
 
       <post-form :method="submit" :form="form" :text="'Comment'"></post-form>
 
-      <combined-comments :comments="post.comments"></combined-comments>
+      <combined-comments :comments="post.comments">comment</combined-comments>
     </div>
   </div>
 </template>
@@ -92,19 +92,29 @@
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import Like from "@/Components/PostComment/Likes/Like";
 import Dislike from "@/Components/PostComment/Likes/Dislike";
+import CombinedComments from "@/Components/PostComment/CombinedComments";
+import PostForm from "@/Components/PostComment/PostForm";
 
 export default {
-  props: ["post", 'timeAgo'],
+  props: ["post", "timeAgo"],
 
   components: {
     Link,
     Like,
     Dislike,
+    CombinedComments,
+    PostForm,
   },
 
   data() {
     return {
       openMenu: false,
+
+      form: this.$inertia.form({
+        body: this.body,
+        user_id: this.post.user_id,
+      }),
+
       deleteForm: this.$inertia.form({
         userPost: this.post,
       }),
@@ -120,6 +130,21 @@ export default {
   },
 
   methods: {
+    // submit comment
+    submit() {
+        this.form.post(this.route('comments.store', this.post), {
+            preserveScroll: true,
+            onSuccess: () => {
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Your comment has successfully been published!'
+                })
+
+                this.form.body = null
+            }
+        })
+    },
+
     deletePost() {
       this.openMenu = false;
       this.deleteForm.delete(this.route("posts.destroy", this.post), {

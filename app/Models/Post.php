@@ -21,7 +21,7 @@ class Post extends Model
      * @var array
      */
     protected $with = [
-        'user',
+        'user', 'comments'
     ];
 
     /**
@@ -68,5 +68,10 @@ class Post extends Model
     public function likes()
     {
         return $this->morphMany(Like::class, 'likeable');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

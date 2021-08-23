@@ -79,9 +79,6 @@ class User extends Authenticatable
     {
         return $this->where('id', '!=', auth()->id());
     }
-    // $suggestions = User::where('id', '!=', auth()->id())
-    //         ->orWhereIn('id', auth()->user()->friends_ids())->take(5)->inRandomOrder()
-    //         ->get();
 
     public function profile() {
         return $this->hasOne(Profile::class);
@@ -91,5 +88,11 @@ class User extends Authenticatable
     {
         //this user has many posts
         return $this->hasMany(Post::class);
+    }
+
+    public function comments()
+    {
+        //this user has many comments
+        return $this->hasMany(Comment::class);
     }
 }
