@@ -72,16 +72,13 @@
 
       <div class="flex items-end my-3">
         <div>
-          <span class="text-sm italic">{{ dateTime(post.created_at) }}</span>
-          <!-- <span class="text-sm italic">{{ post.created_at | timeAgo }}</span> -->
+          <!-- <span class="text-sm italic">{{ dateTime(post.created_at) }}</span> -->
+          <span class="text-sm italic">{{ post.timeAgo }}</span>
         </div>
 
         <div class="flex ml-3">
-          <span>Like</span>
-          <span class="ml-2">Dislike</span>
-
-          <!-- <like :item="post" :method="submitLike"></like>
-          <dislike :item="post" :method="submitDislike" class="ml-2"></dislike> -->
+          <like :item="post" :method="submitLike"></like>
+          <dislike :item="post" :method="submitDislike" class="ml-2"></dislike>
         </div>
       </div>
 
@@ -93,11 +90,16 @@
 </template>
 <script>
 import { Head, Link } from "@inertiajs/inertia-vue3";
+import Like from "@/Components/PostComment/Likes/Like";
+import Dislike from "@/Components/PostComment/Likes/Dislike";
+
 export default {
-  props: ["post"],
+  props: ["post", 'timeAgo'],
 
   components: {
     Link,
+    Like,
+    Dislike,
   },
 
   data() {
@@ -107,9 +109,15 @@ export default {
         userPost: this.post,
       }),
 
+      likeForm: this.$inertia.form({
+        userPost: this.post,
+      }),
+
+      dislikeForm: this.$inertia.form({
+        userPost: this.post,
+      }),
     };
   },
-
 
   methods: {
     deletePost() {
@@ -131,9 +139,23 @@ export default {
       });
     },
 
-    dateTime(value) {
-      return moment(value).format("DD-MM-YYYY");
-    }
+    // dateTime(value) {
+    //   return moment(value).format("DD-MM-YYYY");
+    // },
+
+    submitLike() {
+      this.likeForm.post(this.route("post-like.store", this.post), {
+        preserveScroll: true,
+        onSuccess: () => {},
+      });
+    },
+
+    submitDislike() {
+      this.dislikeForm.delete(this.route("post-like.destroy", this.post), {
+        preserveScroll: true,
+        onSuccess: () => {},
+      });
+    },
   },
 };
 </script>

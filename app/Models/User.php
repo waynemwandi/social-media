@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Friendable;
+use App\Traits\Likeable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -16,9 +17,11 @@ class User extends Authenticatable
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
+    use Likeable;
     use Notifiable;
-    use TwoFactorAuthenticatable;
     use Friendable;
+    use TwoFactorAuthenticatable;
+
 
     /**
      * The attributes that are mass assignable.
