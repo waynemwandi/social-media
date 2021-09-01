@@ -11,44 +11,47 @@
             leading-tight
           "
         >
-          <inertia-link
+          <Link
             :href="route('members.index')"
             class="capitalize hover:text-blue-600"
             style="cursor: pointer"
           >
             Members
-          </inertia-link>
+          </Link>
         </h2>
         <span
           class="text-gray-800 leading-tight text-lg capitalize mt-5 sm:mt-0"
         >
           Visit your
-          <inertia-link
+          <Link
             href="#"
             class="underline hover:text-blue-600"
-            style="cursor: pointer"
           >
             friends
-          </inertia-link>
+          </Link>
         </span>
       </div>
     </template>
 
-    <user-block :items="members"></user-block>
+    <user-block :items="members.data"></user-block>
 
   </pages-layout>
 </template>
 
 <script>
 import PagesLayout from "@/Layouts/PagesLayout";
-import UserBlock from '@/Components/UserBlock'
+import UserBlock from '@/Components/UserBlock';
+import { Head, Link } from "@inertiajs/inertia-vue3";
+
 
 export default {
   props: ["members"],
 
   components: {
     PagesLayout,
-    UserBlock
+    UserBlock,
+    Link,
+
   },
 };
 </script>

@@ -13,12 +13,13 @@
           bg-white
           px-2
           py-3
-          border-1 border-gray-500
+          border-1 border-gray-900
           mt-5
           hover:bg-blue-600
           hover:text-white
+          rounded
+          mr-2
         "
-        style="cursor: pointer"
       >
         <div class="flex flex-shrink-0">
           <img
@@ -28,7 +29,7 @@
           />
         </div>
         <div class="flex flex-grow overflow-hidden">
-          <span class="text-lg ml-3 overflow-hidden">
+          <span class="text-lg ml-3">
             {{ item.username }}
           </span>
         </div>

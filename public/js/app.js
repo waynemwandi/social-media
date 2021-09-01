@@ -21495,13 +21495,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Layouts_PagesLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/PagesLayout */ "./resources/js/Layouts/PagesLayout.vue");
 /* harmony import */ var _Components_UserBlock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/UserBlock */ "./resources/js/Components/UserBlock.vue");
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["members"],
   components: {
     PagesLayout: _Layouts_PagesLayout__WEBPACK_IMPORTED_MODULE_0__.default,
-    UserBlock: _Components_UserBlock__WEBPACK_IMPORTED_MODULE_1__.default
+    UserBlock: _Components_UserBlock__WEBPACK_IMPORTED_MODULE_1__.default,
+    Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Link
   }
 });
 
@@ -22657,10 +22660,7 @@ var _hoisted_1 = {
   "class": "sm:flex sm:flex-wrap"
 };
 var _hoisted_2 = {
-  "class": "\n          flex\n          items-center\n          bg-white\n          px-2\n          py-3\n          border-1 border-gray-500\n          mt-5\n          hover:bg-blue-600\n          hover:text-white\n        ",
-  style: {
-    "cursor": "pointer"
-  }
+  "class": "\n          flex\n          items-center\n          bg-white\n          px-2\n          py-3\n          border-1 border-gray-900\n          mt-5\n          hover:bg-blue-600\n          hover:text-white\n          rounded\n          mr-2\n        "
 };
 var _hoisted_3 = {
   "class": "flex flex-shrink-0"
@@ -22670,7 +22670,7 @@ var _hoisted_5 = {
   "class": "flex flex-grow overflow-hidden"
 };
 var _hoisted_6 = {
-  "class": "text-lg ml-3 overflow-hidden"
+  "class": "text-lg ml-3"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
@@ -26848,7 +26848,7 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" friends ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_inertia_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("inertia-link");
+  var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
 
   var _component_user_block = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("user-block");
 
@@ -26856,7 +26856,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_pages_layout, null, {
     title: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
         href: _ctx.route('members.index'),
         "class": "capitalize hover:text-blue-600",
         style: {
@@ -26871,12 +26871,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
       }, 8
       /* PROPS */
-      , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {
+      , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
         href: "#",
-        "class": "underline hover:text-blue-600",
-        style: {
-          "cursor": "pointer"
-        }
+        "class": "underline hover:text-blue-600"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_6];
@@ -26888,7 +26885,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_user_block, {
-        items: $props.members
+        items: $props.members.data
       }, null, 8
       /* PROPS */
       , ["items"])];
