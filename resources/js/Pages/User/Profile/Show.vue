@@ -16,9 +16,7 @@
             :alt="profile.username"
             class="h-8 w-8 rounded-full object-cover"
           />
-          <span class=" ml-3">{{
-            `${profile.username}'s  Profile`
-          }}</span>
+          <span class="ml-3">{{ `${profile.username}'s  Profile` }}</span>
         </h2>
 
         <status
@@ -32,12 +30,15 @@
 
     <post-form :method="submit" :form="form" :text="'Post'"></post-form>
 
-    <combined-posts :posts="posts.data"> </combined-posts>
+    <infinite-scroll @loadMore="loadMorePosts">
+      <combined-posts :posts="allPosts.data"> </combined-posts>
+    </infinite-scroll>
   </pages-layout>
 </template>
 
 <script>
 import CombinedPosts from "@/Components/PostComment/CombinedPosts";
+import InfiniteScroll from "@/Components/InfiniteScroll";
 import PostForm from "@/Components/PostComment/PostForm";
 import PagesLayout from "@/Layouts/PagesLayout";
 import Status from "@/Components/FriendStatus/Status";
@@ -45,42 +46,59 @@ import Status from "@/Components/FriendStatus/Status";
 export default {
   props: [
     "profile",
-    'posts',
+    "posts",
     "isFriendsWith",
     "friendRequestSentTo",
     "friendRequestRecievedFrom",
   ],
 
   components: {
-      CombinedPosts,
-      PostForm,
-      PagesLayout,
-      Status,
+    CombinedPosts,
+    PostForm,
+    PagesLayout,
+    Status,
+    InfiniteScroll,
   },
 
   data() {
-      return {
-          form: this.$inertia.form({
-              body: this.body,
-              user_id: this.profile.id,
-          })
-      }
+    return {
+      form: this.$inertia.form({
+        body: this.body,
+        user_id: this.profile.id,
+      }),
+
+      allPosts: this.posts,
+    };
   },
 
   methods: {
-      submit() {
-          this.form.post(this.route('posts.store'), {
-              preserveScroll: true,
-              onSuccess: () => {
-                  Toast.fire({
-                      icon: 'success',
-                      title: 'Your post has successfully been published'
-                  })
+    submit() {
+      this.form.post(this.route("posts.store"), {
+        preserveScroll: true,
+        onSuccess: () => {
+          Toast.fire({
+            icon: "success",
+            title: "Your post has successfully been published",
+          });
 
-                  this.form.body = null
-              }
-          })
+          this.form.body = null;
+        },
+      });
+    },
+
+        loadMorePosts() {
+      if (!this.allPosts.next_page_url) {
+        return;
       }
+
+      return axios.get(this.allPosts.next_page_url).then((resp) => {
+        this.allPosts = {
+          ...resp.data,
+          data: [...this.allPosts.data, ...resp.data.data],
+        };
+      });
+    },
+
   },
 };
 </script>

@@ -14,13 +14,18 @@ class MemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(User $user)
+    public function index(Request $request, User $user)
     {
-        $members = User::notAuth($user)->paginate(20);
-
         // return Inertia::render('User/Members/Index', [
         //     'members' => User::all(),
         // ]);
+
+        $members = User::notAuth($user)->paginate(20);
+
+        if ($request->wantsJson()) {
+            return $members;
+        }
+
         return Inertia::render('User/Members/Index', [
             'members' => $members,
         ]);
