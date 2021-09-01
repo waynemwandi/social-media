@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Post;
 use Inertia\Inertia;
 
 class ProfileController extends Controller
@@ -48,16 +49,22 @@ class ProfileController extends Controller
      */
     public function show(User $user)
     {
+        $posts = Post::where('parent_id', $user->id)
+            ->orWhere('user_id', $user->id)
+            ->where('parent_id', null)
+            ->latest()
+            ->paginate();
+
         // Renders 'profile' as prop
         return Inertia::render('User/Profile/Show', [
             'profile' => $user,
+            'posts' => $posts,
             'isFriendsWith' => auth()->user()->is_friends_with($user->id),
             'friendRequestSentTo' => auth()->user()->has_pending_friend_request_sent_to($user->id),
             'friendRequestRecievedFrom' => auth()->user()->has_pending_friend_request_from($user->id),
 
 
         ]);
-
     }
 
     /**
