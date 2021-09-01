@@ -19309,11 +19309,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+/* harmony import */ var _Components_PostComment_Likes_Like__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/PostComment/Likes/Like */ "./resources/js/Components/PostComment/Likes/Like.vue");
+/* harmony import */ var _Components_PostComment_Likes_Dislike__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/PostComment/Likes/Dislike */ "./resources/js/Components/PostComment/Likes/Dislike.vue");
+
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["comment", 'timeAgo'],
+  props: ["comment", "timeAgo"],
   components: {
+    Dislike: _Components_PostComment_Likes_Dislike__WEBPACK_IMPORTED_MODULE_2__.default,
+    Like: _Components_PostComment_Likes_Like__WEBPACK_IMPORTED_MODULE_1__.default,
     Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Link
+  },
+  data: function data() {
+    return {
+      likeForm: this.$inertia.form({
+        comment: this.comment
+      }),
+      dislikeForm: this.$inertia.form({
+        comment: this.comment
+      })
+    };
+  },
+  methods: {
+    submitLike: function submitLike() {
+      this.likeForm.post(this.route('comment-like.store', this.comment.id), {
+        preserveScroll: true,
+        onSuccess: function onSuccess() {}
+      });
+    },
+    submitDislike: function submitDislike() {
+      this.dislikeForm["delete"](this.route('comment-like.destroy', this.comment.id), {
+        preserveScroll: true,
+        onSuccess: function onSuccess() {}
+      });
+    }
   }
 });
 
@@ -22082,17 +22112,15 @@ var _hoisted_7 = {
 var _hoisted_8 = {
   "class": "text-sm italic"
 };
-
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_9 = {
   "class": "flex ml-3"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <like :item=\"comment\" :method=\"submitLike\"></like>\n          <dislike\n            :item=\"comment\"\n            :method=\"submitDislike\"\n            class=\"ml-2\"\n          ></dislike> "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Like"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "ml-2"
-}, "Dislike")], -1
-/* HOISTED */
-);
-
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
+
+  var _component_like = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("like");
+
+  var _component_dislike = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("dislike");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
     href: _ctx.route('profiles.show', $props.comment.user.username)
@@ -22128,7 +22156,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.comment.timeAgo), 1
   /* TEXT */
-  )]), _hoisted_9])])]);
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_like, {
+    item: $props.comment,
+    method: $options.submitLike
+  }, null, 8
+  /* PROPS */
+  , ["item", "method"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_dislike, {
+    item: $props.comment,
+    method: $options.submitDislike,
+    "class": "ml-2"
+  }, null, 8
+  /* PROPS */
+  , ["item", "method"])])])])]);
 }
 
 /***/ }),

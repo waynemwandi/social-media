@@ -26,17 +26,13 @@
           <span class="text-sm italic">{{ comment.timeAgo }}</span>
         </div>
         <div class="flex ml-3">
-          <!-- <like :item="comment" :method="submitLike"></like>
+          <like :item="comment" :method="submitLike"></like>
           <dislike
             :item="comment"
             :method="submitDislike"
             class="ml-2"
-          ></dislike> -->
-
-          <span>Like</span>
-          <span class="ml-2">Dislike</span>
+          ></dislike>
         </div>
-
       </div>
     </div>
   </div>
@@ -44,12 +40,43 @@
 
 <script>
 import { Head, Link } from "@inertiajs/inertia-vue3";
+import Like from '@/Components/PostComment/Likes/Like';
+import Dislike from '@/Components/PostComment/Likes/Dislike';
 
 export default {
-  props: ["comment", 'timeAgo'],
+  props: ["comment", "timeAgo"],
 
   components: {
-      Link,
+    Dislike,
+    Like,
+    Link,
+  },
+
+  data() {
+      return {
+          likeForm: this.$inertia.form({
+              comment: this.comment
+          }),
+
+          dislikeForm: this.$inertia.form({
+              comment: this.comment
+          }),
+      }
+  },
+
+  methods: {
+      submitLike() {
+          this.likeForm.post(this.route('comment-like.store', this.comment.id), {
+              preserveScroll: true,
+              onSuccess: () => {}
+          })
+      },
+      submitDislike() {
+          this.dislikeForm.delete(this.route('comment-like.destroy', this.comment.id), {
+              preserveScroll: true,
+              onSuccess: () => {}
+          })
+      },
   }
 };
 </script>
