@@ -26,9 +26,8 @@
     <suggestion-block :suggestions="suggestions"></suggestion-block>
 
     <infinite-scroll @loadMore="loadMorePosts">
-      <combined-posts :posts="allPosts.data"> </combined-posts>
+      <combined-posts :posts="allPosts.data" :pagination="pagination"> </combined-posts>
     </infinite-scroll>
-
   </pages-layout>
 </template>
 
@@ -59,6 +58,12 @@ export default {
 
       allPosts: this.combinedPosts,
     };
+  },
+
+  computed: {
+    pagination() {
+      return (this.allPosts = this.combinedPosts);
+    },
   },
 
   methods: {

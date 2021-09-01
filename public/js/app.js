@@ -21000,6 +21000,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       allPosts: this.combinedPosts
     };
   },
+  computed: {
+    pagination: function pagination() {
+      return this.allPosts = this.combinedPosts;
+    }
+  },
   methods: {
     submit: function submit() {
       var _this = this;
@@ -21658,10 +21663,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   props: ["profile", "posts", "isFriendsWith", "friendRequestSentTo", "friendRequestRecievedFrom"],
   components: {
     CombinedPosts: _Components_PostComment_CombinedPosts__WEBPACK_IMPORTED_MODULE_0__.default,
+    InfiniteScroll: _Components_InfiniteScroll__WEBPACK_IMPORTED_MODULE_1__.default,
     PostForm: _Components_PostComment_PostForm__WEBPACK_IMPORTED_MODULE_2__.default,
     PagesLayout: _Layouts_PagesLayout__WEBPACK_IMPORTED_MODULE_3__.default,
-    Status: _Components_FriendStatus_Status__WEBPACK_IMPORTED_MODULE_4__.default,
-    InfiniteScroll: _Components_InfiniteScroll__WEBPACK_IMPORTED_MODULE_1__.default
+    Status: _Components_FriendStatus_Status__WEBPACK_IMPORTED_MODULE_4__.default
   },
   data: function data() {
     return {
@@ -25722,7 +25727,7 @@ var _hoisted_1 = {
   "class": "flex justify-between items-center w-full"
 };
 var _hoisted_2 = {
-  "class": "\r\n            flex\r\n            items-end\r\n            font-semibold\r\n            text-xl text-gray-800\r\n            leading-tight\r\n          "
+  "class": "\n            flex\n            items-end\n            font-semibold\n            text-xl text-gray-800\n            leading-tight\n          "
 };
 var _hoisted_3 = ["src", "alt"];
 
@@ -25769,10 +25774,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_combined_posts, {
-            posts: $data.allPosts.data
+            posts: $data.allPosts.data,
+            pagination: $options.pagination
           }, null, 8
           /* PROPS */
-          , ["posts"])];
+          , ["posts", "pagination"])];
         }),
         _: 1
         /* STABLE */
@@ -27100,7 +27106,7 @@ var _hoisted_1 = {
   "class": "flex justify-between items-center w-full"
 };
 var _hoisted_2 = {
-  "class": "\r\n            flex\r\n            items-end\r\n            font-semibold\r\n            text-xl text-gray-800\r\n            leading-tight\r\n          "
+  "class": "\n            flex\n            items-end\n            font-semibold\n            text-xl text-gray-800\n            leading-tight\n          "
 };
 var _hoisted_3 = ["src", "alt"];
 var _hoisted_4 = {

@@ -31,7 +31,7 @@
     <post-form :method="submit" :form="form" :text="'Post'"></post-form>
 
     <infinite-scroll @loadMore="loadMorePosts">
-      <combined-posts :posts="allPosts.data"> </combined-posts>
+      <combined-posts :posts="allPosts.data"></combined-posts>
     </infinite-scroll>
   </pages-layout>
 </template>
@@ -54,10 +54,10 @@ export default {
 
   components: {
     CombinedPosts,
+    InfiniteScroll,
     PostForm,
     PagesLayout,
     Status,
-    InfiniteScroll,
   },
 
   data() {
@@ -86,7 +86,7 @@ export default {
       });
     },
 
-        loadMorePosts() {
+    loadMorePosts() {
       if (!this.allPosts.next_page_url) {
         return;
       }
@@ -98,7 +98,6 @@ export default {
         };
       });
     },
-
   },
 };
 </script>
