@@ -25,6 +25,7 @@
         <div>
           <span class="text-sm italic">{{ comment.timeAgo }}</span>
         </div>
+
         <div class="flex ml-3">
           <like :item="comment" :method="submitLike"></like>
           <dislike
@@ -40,8 +41,8 @@
 
 <script>
 import { Head, Link } from "@inertiajs/inertia-vue3";
-import Like from '@/Components/PostComment/Likes/Like';
-import Dislike from '@/Components/PostComment/Likes/Dislike';
+import Dislike from "@/Components/PostComment/Likes/Dislike";
+import Like from "@/Components/PostComment/Likes/Like";
 
 export default {
   props: ["comment", "timeAgo"],
@@ -53,30 +54,34 @@ export default {
   },
 
   data() {
-      return {
-          likeForm: this.$inertia.form({
-              comment: this.comment
-          }),
+    return {
+      likeForm: this.$inertia.form({
+        comment: this.comment,
+      }),
 
-          dislikeForm: this.$inertia.form({
-              comment: this.comment
-          }),
-      }
+      dislikeForm: this.$inertia.form({
+        comment: this.comment,
+      }),
+    };
   },
 
   methods: {
-      submitLike() {
-          this.likeForm.post(this.route('comment-like.store', this.comment.id), {
-              preserveScroll: true,
-              onSuccess: () => {}
-          })
-      },
-      submitDislike() {
-          this.dislikeForm.delete(this.route('comment-like.destroy', this.comment.id), {
-              preserveScroll: true,
-              onSuccess: () => {}
-          })
-      },
-  }
+    submitLike() {
+      this.likeForm.post(this.route("comment-like.store", this.comment.id), {
+        preserveScroll: true,
+        onSuccess: () => {},
+      });
+    },
+
+    submitDislike() {
+      this.dislikeForm.delete(
+        this.route("comment-like.destroy", this.comment.id),
+        {
+          preserveScroll: true,
+          onSuccess: () => {},
+        }
+      );
+    },
+  },
 };
 </script>

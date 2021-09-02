@@ -5,7 +5,7 @@
         name="post"
         rows="3"
         class="border rounded px-2 py-2 w-full"
-        :placeholder="`Post something ${$page.props.user.username} . . .`"
+        :placeholder="`Write something ${$page.props.user.username} . . .`"
         v-model="form.body"
       ></textarea>
     </div>

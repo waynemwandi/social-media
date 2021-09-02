@@ -19291,12 +19291,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _CommentItem_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CommentItem.vue */ "./resources/js/Components/PostComment/CommentItem.vue");
+/* harmony import */ var _CommentItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CommentItem */ "./resources/js/Components/PostComment/CommentItem.vue");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['comments'],
   components: {
-    CommentItem: _CommentItem_vue__WEBPACK_IMPORTED_MODULE_0__.default
+    CommentItem: _CommentItem__WEBPACK_IMPORTED_MODULE_0__.default
   }
 });
 
@@ -19336,16 +19336,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
-/* harmony import */ var _Components_PostComment_Likes_Like__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/PostComment/Likes/Like */ "./resources/js/Components/PostComment/Likes/Like.vue");
-/* harmony import */ var _Components_PostComment_Likes_Dislike__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/PostComment/Likes/Dislike */ "./resources/js/Components/PostComment/Likes/Dislike.vue");
+/* harmony import */ var _Components_PostComment_Likes_Dislike__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/PostComment/Likes/Dislike */ "./resources/js/Components/PostComment/Likes/Dislike.vue");
+/* harmony import */ var _Components_PostComment_Likes_Like__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/PostComment/Likes/Like */ "./resources/js/Components/PostComment/Likes/Like.vue");
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["comment", "timeAgo"],
   components: {
-    Dislike: _Components_PostComment_Likes_Dislike__WEBPACK_IMPORTED_MODULE_2__.default,
-    Like: _Components_PostComment_Likes_Like__WEBPACK_IMPORTED_MODULE_1__.default,
+    Dislike: _Components_PostComment_Likes_Dislike__WEBPACK_IMPORTED_MODULE_1__.default,
+    Like: _Components_PostComment_Likes_Like__WEBPACK_IMPORTED_MODULE_2__.default,
     Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Link
   },
   data: function data() {
@@ -19360,13 +19360,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submitLike: function submitLike() {
-      this.likeForm.post(this.route('comment-like.store', this.comment.id), {
+      this.likeForm.post(this.route("comment-like.store", this.comment.id), {
         preserveScroll: true,
         onSuccess: function onSuccess() {}
       });
     },
     submitDislike: function submitDislike() {
-      this.dislikeForm["delete"](this.route('comment-like.destroy', this.comment.id), {
+      this.dislikeForm["delete"](this.route("comment-like.destroy", this.comment.id), {
         preserveScroll: true,
         onSuccess: function onSuccess() {}
       });
@@ -21677,6 +21677,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       allPosts: this.posts
     };
   },
+  computed: {
+    pagination: function pagination() {
+      return this.allPosts = this.posts;
+    }
+  },
   methods: {
     submit: function submit() {
       var _this = this;
@@ -21686,7 +21691,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         onSuccess: function onSuccess() {
           Toast.fire({
             icon: "success",
-            title: "Your post has successfully been published"
+            title: "Your post has successfully been published!"
           });
           _this.form.body = null;
         }
@@ -22484,7 +22489,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "post",
     rows: "3",
     "class": "border rounded px-2 py-2 w-full",
-    placeholder: "Post something ".concat(_ctx.$page.props.user.username, " . . ."),
+    placeholder: "Write something ".concat(_ctx.$page.props.user.username, " . . ."),
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $props.form.body = $event;
     })

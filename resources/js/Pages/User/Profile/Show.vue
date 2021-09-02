@@ -71,6 +71,12 @@ export default {
     };
   },
 
+  computed: {
+    pagination() {
+      return (this.allPosts = this.posts);
+    },
+  },
+
   methods: {
     submit() {
       this.form.post(this.route("posts.store"), {
@@ -78,7 +84,7 @@ export default {
         onSuccess: () => {
           Toast.fire({
             icon: "success",
-            title: "Your post has successfully been published",
+            title: "Your post has successfully been published!",
           });
 
           this.form.body = null;
@@ -91,12 +97,12 @@ export default {
         return;
       }
 
-      return axios.get(this.allPosts.next_page_url).then((resp) => {
+      return axios.get(this.allPosts.next_page_url).then(resp => {
         this.allPosts = {
           ...resp.data,
           data: [...this.allPosts.data, ...resp.data.data],
         };
-      });
+      })
     },
   },
 };
