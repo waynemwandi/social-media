@@ -273,7 +273,8 @@
             shadow
             rounded
             my-5
-            ml-5
+            ml-2
+            mr-2
             py-6
             px-4
             w-50
@@ -283,6 +284,7 @@
             md:mx-4
             md:px-10
             lg:mx-auto
+
           "
         >
           <slot></slot>

@@ -22829,7 +22829,7 @@ var _hoisted_1 = {
   "class": "sm:flex sm:flex-wrap"
 };
 var _hoisted_2 = {
-  "class": "\r\n          flex\r\n          items-center\r\n          bg-white\r\n          px-2\r\n          py-3\r\n          border-1 border-gray-900\r\n          mt-5\r\n          hover:bg-blue-600\r\n          hover:text-white\r\n          rounded\r\n          mr-2\r\n        "
+  "class": "\n          flex\n          items-center\n          bg-white\n          px-2\n          py-3\n          border-1 border-gray-900\n          mt-5\n          hover:bg-blue-600\n          hover:text-white\n          rounded\n          mr-2\n        "
 };
 var _hoisted_3 = {
   "class": "flex flex-shrink-0"
@@ -23988,7 +23988,7 @@ var _hoisted_35 = {
   "class": "flex flex-wrap pt-16 sm:flex-nowrap"
 };
 var _hoisted_36 = {
-  "class": "\n            bg-gray-200\n            shadow\n            rounded\n            my-5\n            ml-5\n            py-6\n            px-4\n            w-50\n            sm:w-2/3\n            sm:mx-2\n            sm:my-3\n            md:mx-4\n            md:px-10\n            lg:mx-auto\n          "
+  "class": "\n            bg-gray-200\n            shadow\n            rounded\n            my-5\n            ml-2\n            mr-2\n            py-6\n            px-4\n            w-50\n            sm:w-2/3\n            sm:mx-2\n            sm:my-3\n            md:mx-4\n            md:px-10\n            lg:mx-auto\n\n          "
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
@@ -27014,10 +27014,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "flex flex-col items-center sm:flex-row sm:justify-between"
+  "class": "\n          flex flex-col\n          items-center\n          sm:flex-row\n          sm:justify-between\n          justify-between\n\n        "
 };
 var _hoisted_2 = {
-  "class": "\r\n            flex\r\n            items-end\r\n            font-semibold\r\n            text-xl text-gray-800\r\n            leading-tight\r\n          "
+  "class": "\n            flex\n            items-end\n            font-semibold\n            text-xl text-gray-800\n            leading-tight\n          "
 };
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Members ");

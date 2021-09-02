@@ -1,7 +1,16 @@
 <template>
   <pages-layout>
     <template #title>
-      <div class="flex flex-col items-center sm:flex-row sm:justify-between">
+      <div
+        class="
+          flex flex-col
+          items-center
+          sm:flex-row
+          sm:justify-between
+          justify-between
+
+        "
+      >
         <h2
           class="
             flex
@@ -58,12 +67,12 @@ export default {
 
   methods: {
     loadMoreMembers() {
-        // checks that pagination is at the end/last page
-        if (!this.allMembers.next_page_url) {
-          return;
-        }
+      // checks that pagination is at the end/last page
+      if (!this.allMembers.next_page_url) {
+        return;
+      }
 
-        // pagination
+      // pagination
       return axios.get(this.allMembers.next_page_url).then((resp) => {
         this.allMembers = {
           ...resp.data,
