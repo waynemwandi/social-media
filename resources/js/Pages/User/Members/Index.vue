@@ -32,7 +32,7 @@
           class="text-gray-800 leading-tight text-lg capitalize mt-5 sm:mt-0"
         >
           Visit your
-          <Link href="#" class="underline hover:text-blue-600"> friends </Link>
+          <Link :href="route('friends.index')" class="underline hover:text-blue-600"> friends </Link>
         </span>
       </div>
     </template>

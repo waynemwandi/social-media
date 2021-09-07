@@ -16,7 +16,7 @@
             :alt="$page.props.user.username"
             class="h-8 w-8 rounded-full object-cover"
           />
-          <span class="capitalize ml-3">Feed</span>
+          <span class="capitalize ml-3">Dashboard Feed</span>
         </h2>
       </div>
     </template>

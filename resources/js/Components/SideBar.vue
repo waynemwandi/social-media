@@ -7,11 +7,7 @@
       v-for="link in sideBarLinks"
       :key="link.name"
       class="flex items-end pl-6 py-2"
-      :class="
-        route().current(link.route)
-          ? 'text-white bg-gray-800 hover:bg-gray-500'
-          : 'text-gray-800 hover:bg-gray-500 hover:text-white'
-      "
+      :class="route().current(link.route) ? 'text-white bg-gray-800 hover:bg-gray-500' : 'text-gray-800 hover:bg-gray-500 hover:text-white'"
     >
       <img
         :src="link.image"
@@ -58,13 +54,15 @@ export default {
           icon: "user-edit",
         },
 
+        {
+          name: "Friends",
+          route: route("friends.index"),
+          icon: "user-friends",
+        },
+
         { name: "Members", route: route("members.index"), icon: "users" },
 
-        // {
-        //   name: "Friends",
-        //   route: route("friends.index"),
-        //   icon: "user-friends",
-        // },
+
 
         // {
         //   name: "Chat Rooms",

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \App\Models\User;
 use App\Traits\Friendable;
+use Inertia\Inertia;
 
 class FriendController extends Controller
 {
@@ -16,7 +17,7 @@ class FriendController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('User/Friends/Index');
     }
 
     /**
